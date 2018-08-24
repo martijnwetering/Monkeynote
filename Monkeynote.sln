@@ -16,6 +16,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.vsts-ci.yml = .vsts-ci.yml
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monkeynote.Core", "src\Monkeynote.Core\Monkeynote.Core.csproj", "{18DD0637-2BB4-4430-9377-02526C625423}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monkeynote.Specs", "Monkeynote.Specs\Monkeynote.Specs.csproj", "{11BFCBEC-82A6-4011-9087-D702C81B7162}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monkeynote.Infrastructure", "..\src\Monkeynote.Infrastructure\Monkeynote.Infrastructure.csproj", "{D8CDC40A-A69F-4867-938D-31DADE54DB0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monkeynote.DependencyInjection", "src\Monkeynote.DependencyInjection\Monkeynote.DependencyInjection.csproj", "{D9495DF7-BDC2-4D5D-9048-6537F91A39CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,12 +38,32 @@ Global
 		{BA9C5CA0-8D82-45E6-8C03-388A1410819D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA9C5CA0-8D82-45E6-8C03-388A1410819D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA9C5CA0-8D82-45E6-8C03-388A1410819D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18DD0637-2BB4-4430-9377-02526C625423}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18DD0637-2BB4-4430-9377-02526C625423}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18DD0637-2BB4-4430-9377-02526C625423}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18DD0637-2BB4-4430-9377-02526C625423}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11BFCBEC-82A6-4011-9087-D702C81B7162}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11BFCBEC-82A6-4011-9087-D702C81B7162}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11BFCBEC-82A6-4011-9087-D702C81B7162}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11BFCBEC-82A6-4011-9087-D702C81B7162}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8CDC40A-A69F-4867-938D-31DADE54DB0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8CDC40A-A69F-4867-938D-31DADE54DB0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8CDC40A-A69F-4867-938D-31DADE54DB0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8CDC40A-A69F-4867-938D-31DADE54DB0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9495DF7-BDC2-4D5D-9048-6537F91A39CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9495DF7-BDC2-4D5D-9048-6537F91A39CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9495DF7-BDC2-4D5D-9048-6537F91A39CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9495DF7-BDC2-4D5D-9048-6537F91A39CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{161CBAAF-515F-4065-BD91-74CE75416C70} = {91BD65FF-B2CA-46B5-A23F-2A4997F8006B}
+		{18DD0637-2BB4-4430-9377-02526C625423} = {91BD65FF-B2CA-46B5-A23F-2A4997F8006B}
+		{11BFCBEC-82A6-4011-9087-D702C81B7162} = {EE17DCBB-3973-42F9-8B80-47EE61EE4BC9}
+		{D8CDC40A-A69F-4867-938D-31DADE54DB0B} = {91BD65FF-B2CA-46B5-A23F-2A4997F8006B}
+		{D9495DF7-BDC2-4D5D-9048-6537F91A39CF} = {91BD65FF-B2CA-46B5-A23F-2A4997F8006B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B4B46EBD-8136-4D76-8039-1D9D8265C199}
