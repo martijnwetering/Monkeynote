@@ -2,8 +2,8 @@ version: '3.4'
 
 services:
   monkeynote.web:
-    volumes:
-      - C:\Users\Martijn\vsdbg\vs2017u5:/remote_debugger:ro
+#    volumes:
+#      - C:\Users\Martijn\vsdbg\vs2017u5:/remote_debugger:ro
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
