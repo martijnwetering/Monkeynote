@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   monkeynote.web:
-    image: monkeynote
+    image: ${DOCKER_REGISTRY}/monkeynote
     build:
       context: .
       dockerfile: src/Monkeynote.Web/Dockerfile
