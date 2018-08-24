@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   monkeynote.web:
-    image: monkeynoteweb:dev2
+    image: monkeynoteweb:dev
     build:
       target: base
     environment:
