@@ -3,9 +3,34 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{91BD65FF-B2CA-46B5-A23F-2A4997F8006B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{EE17DCBB-3973-42F9-8B80-47EE61EE4BC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monkeynote.Web", "src\Monkeynote.Web\Monkeynote.Web.csproj", "{161CBAAF-515F-4065-BD91-74CE75416C70}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BA9C5CA0-8D82-45E6-8C03-388A1410819D}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{161CBAAF-515F-4065-BD91-74CE75416C70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{161CBAAF-515F-4065-BD91-74CE75416C70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{161CBAAF-515F-4065-BD91-74CE75416C70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{161CBAAF-515F-4065-BD91-74CE75416C70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA9C5CA0-8D82-45E6-8C03-388A1410819D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA9C5CA0-8D82-45E6-8C03-388A1410819D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA9C5CA0-8D82-45E6-8C03-388A1410819D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA9C5CA0-8D82-45E6-8C03-388A1410819D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{161CBAAF-515F-4065-BD91-74CE75416C70} = {91BD65FF-B2CA-46B5-A23F-2A4997F8006B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B4B46EBD-8136-4D76-8039-1D9D8265C199}

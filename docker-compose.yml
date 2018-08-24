@@ -1,0 +1,8 @@
+version: '3.6'
+
+services:
+  monkeynote.web:
+    image: ${DOCKER_REGISTRY}monkeynoteweb
+    build:
+      context: .
+      dockerfile: src/Monkeynote.Web/Dockerfile
