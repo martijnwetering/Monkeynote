@@ -7,9 +7,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{91BD65FF-B2C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{EE17DCBB-3973-42F9-8B80-47EE61EE4BC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monkeynote.Web", "src\Monkeynote.Web\Monkeynote.Web.csproj", "{161CBAAF-515F-4065-BD91-74CE75416C70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monkeynote.Web", "src\Monkeynote.Web\Monkeynote.Web.csproj", "{161CBAAF-515F-4065-BD91-74CE75416C70}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BA9C5CA0-8D82-45E6-8C03-388A1410819D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{05309A56-0EDA-4134-8A12-6046576541C1}"
+	ProjectSection(SolutionItems) = preProject
+		.vsts-ci.yml = .vsts-ci.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
