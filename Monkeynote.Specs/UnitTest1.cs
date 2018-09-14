@@ -1,7 +1,6 @@
-using System;
 using Xunit;
 
-namespace Monkeynote.Specs
+namespace RocketMonkey.Monkeynote.Specs
 {
     public class UnitTest1
     {

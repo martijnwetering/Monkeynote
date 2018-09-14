@@ -1,14 +1,54 @@
 version: '3.4'
 
 services:
-  monkeynote.web:
+  notes.api:
+    container_name: notes.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_HTTPS_PORT=44389
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - IdentityUrl=http://identity.api
     ports:
-      - "62243:80"
-      - "44389:443"
-#    volumes:
-#      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-#      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - "5210:80"
+    depends_on:
+      - sql.data
+    networks:
+      - backend
+
+  ocelotapigwweb:
+    container_name: web.bff
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - IdentityUrl=http://identity.api
+    volumes:
+      - ./src/ApiGateways/Web.Bff:${ESHOP_OCELOT_VOLUME_SPEC:-/app/configuration}
+    ports:
+      - "5200:80"
+    networks:
+      - backend
+
+  sql.data:
+    container_name: sql.data
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Passw0rd!
+    ports:
+      - "27017:1433"
+    networks:
+      - backend
+
+  identity.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=${MONKEYNOTE_AZURE_IDENTITY_DB:-Server=sql.data;Database=Monkeynote;User Id=sa;Password=Passw0rd!;MultipleActiveResultSets=true}
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+    ports:
+      - "5310:80"
+    networks:
+      - backend
+    depends_on:
+      - sql.data
+
+networks:
+  backend:
+    driver: bridge

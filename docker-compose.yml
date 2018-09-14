@@ -1,8 +1,24 @@
 version: '3.4'
 
 services:
-  monkeynote.web:
-    image: ${DOCKER_REGISTRY}/monkeynote
+  notes.api:
+    image: monkeynote/notesapi:${TAG:-latest}
     build:
       context: .
-      dockerfile: src/Monkeynote.Web/Dockerfile
+      dockerfile: src/Services/Notes/Notes.Api/Dockerfile
+
+  ocelotapigwweb:
+    image: monkeynote/ocelotapigwweb:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/ApiGateways/ApiGw-Base/OcelotApiGateway/Dockerfile
+
+  sql.data:
+    image: microsoft/mssql-server-linux:2017-latest
+
+  identity.api:
+    image: monkeynote/identityapi
+    build:
+      context: .
+      dockerfile: src/Services/Identity/Identity.Api/Dockerfile
+
