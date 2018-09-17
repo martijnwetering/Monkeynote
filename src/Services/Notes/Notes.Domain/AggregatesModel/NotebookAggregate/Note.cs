@@ -13,13 +13,13 @@ namespace RocketMonkey.Monkeynote.Notes.Domain.AggregatesModel.NotebookAggregate
         public string Title { get; private set; }
         public string Text { get; private set; }
 
-        public ICollection<NoteTag> NoteTags { get; private set; } = new List<NoteTag>();
+        // EF Core navigation property
+        private ICollection<NoteTag> NoteTags { get; set; } = new List<NoteTag>();
 
         public ICollection<Tag> Tags { get; private set; } = new List<Tag>();
 
         private Note()
         {
-            
         }
 
         public Note(string title, string text)

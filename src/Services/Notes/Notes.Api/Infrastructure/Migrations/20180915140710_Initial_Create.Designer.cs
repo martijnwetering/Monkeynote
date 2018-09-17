@@ -10,7 +10,7 @@ using RocketMonkey.Monkeynote.Notes.Infrastructure;
 namespace RocketMonkey.Monkeynote.Notes.Api.Infrastructure.Migrations
 {
     [DbContext(typeof(NotesContext))]
-    [Migration("20180914182942_Initial_Create")]
+    [Migration("20180915140710_Initial_Create")]
     partial class Initial_Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

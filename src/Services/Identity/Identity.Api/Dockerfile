@@ -16,4 +16,4 @@ RUN dotnet publish Identity.Api.csproj -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "RocketMonkey.Moneynote.Identity.Api.dll"]
+ENTRYPOINT ["dotnet", "RocketMonkey.Monkeynote.Identity.Api.dll"]

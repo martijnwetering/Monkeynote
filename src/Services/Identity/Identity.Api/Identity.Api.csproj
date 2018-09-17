@@ -3,11 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <DockerComposeProjectPath>..\..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
-    <RootNamespace>RocketMonkey.Moneynote.Identity.Api</RootNamespace>
-    <AssemblyName>RocketMonkey.Moneynote.Identity.Api</AssemblyName>
+    <RootNamespace>RocketMonkey.Monkeynote.Identity.Api</RootNamespace>
+    <AssemblyName>RocketMonkey.Monkeynote.Identity.Api</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Infrastructure\Migrations\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

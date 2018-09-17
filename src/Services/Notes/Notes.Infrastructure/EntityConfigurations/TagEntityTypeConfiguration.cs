@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using RocketMonkey.Monkeynote.Notes.Domain.AggregatesModel.NotebookAggregate;
 using RocketMonkey.Monkeynote.Notes.Domain.AggregatesModel.TagAggregate;
 
 namespace RocketMonkey.Monkeynote.Notes.Infrastructure.EntityConfigurations

@@ -18,13 +18,6 @@ namespace RocketMonkey.Monkeynote.Notes.Infrastructure.EntityConfigurations
 
             builder.Property(o => o.Id).ForSqlServerUseSequenceHiLo("noteseq");
 
-            //var navigation = builder.Metadata.FindNavigation("NoteTags");
-            //navigation.SetPropertyAccessMode(PropertyAccessMode.Property);
-
-            //builder.HasOne<Notebook>()
-            //    .WithMany()
-            //    .HasForeignKey("NotebookId");
-
             builder.Property(o => o.Title).IsRequired();
             builder.Property(o => o.Text).IsRequired();
         }

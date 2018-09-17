@@ -6,7 +6,9 @@ namespace RocketMonkey.Monkeynote.Notes.Domain.AggregatesModel.TagAggregate
     public class Tag : Entity, IAggregateRoot
     {
         public string Name { get; private set; }
-        public ICollection<NoteTag> NoteTags { get; private set; } = new List<NoteTag>();
+
+        // EF Core navigation property
+        private ICollection<NoteTag> NoteTags { get; set; } = new List<NoteTag>();
 
         public Tag()
         {

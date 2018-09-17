@@ -2,6 +2,7 @@
 using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -32,6 +33,13 @@ namespace RocketMonkey.Monkeynote.Notes.Api
                 .AddCustomMvc()
                 .AddCustomDbContext(Configuration);
 
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = "https://localhost:5310";
+                    options.ApiName = "monkeynote.notes.api";
+                });
+
             var container = new ContainerBuilder();
             container.Populate(services);
 
@@ -54,6 +62,7 @@ namespace RocketMonkey.Monkeynote.Notes.Api
                 }
             }
 
+            app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
             app.UseCors("CorsPolicy");
 

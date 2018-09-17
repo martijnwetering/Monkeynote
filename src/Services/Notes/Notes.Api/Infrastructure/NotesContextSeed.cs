@@ -63,13 +63,15 @@ namespace RocketMonkey.Monkeynote.Notes.Api.Infrastructure
 
                     await policy.ExecuteAsync(async () =>
                     {
-                        if (!context.Notebooks.Any())
+                        if (!context.Tags.Any())
                         {
                             context.Tags.AddRange(Tags);
                             await context.SaveChangesAsync();
+                        }
 
+                        if (!context.Notebooks.Any())
+                        {
                             Tags.ForEach(tag => Notes.ForEach(note => note.AddTag(tag)));
-
                             context.Notebooks.AddRange(Notebooks);
                             await context.SaveChangesAsync();
                         }

@@ -22,3 +22,9 @@ services:
       context: .
       dockerfile: src/Services/Identity/Identity.Api/Dockerfile
 
+  webspa:
+    image: monkeynote/webspa:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Web/WebSpa/Dockerfile
+
