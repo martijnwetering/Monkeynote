@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RequireAuthenticatedUserRouteGuardService } from './shared/require-authenticated-user-route-guard.service';
-import { NotesComponent } from './notes/notes.component';
+import { SigninOidcComponent } from './signin-oidc/signin-oidc.component';
+import { RedirectSilentRenewComponent } from './redirect-silent-renew/redirect-silent-renew.component';
+import { NotebooksComponent } from './notebooks/notebooks.component';
 
 
 const routes: Routes = [
@@ -10,9 +12,11 @@ const routes: Routes = [
     canActivate: [RequireAuthenticatedUserRouteGuardService]
   },
   {
-    path: 'notes', component: NotesComponent,
+    path: 'notes', component: NotebooksComponent,
     canActivate: [RequireAuthenticatedUserRouteGuardService]
-  }
+  },
+  { path: 'signin-oidc', component: SigninOidcComponent },
+    { path: 'redirect-silentrenew', component: RedirectSilentRenewComponent }
 ];
 
 @NgModule({

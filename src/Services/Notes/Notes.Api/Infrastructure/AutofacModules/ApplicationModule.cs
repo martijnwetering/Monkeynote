@@ -1,19 +1,22 @@
 ﻿using Autofac;
+using RocketMonkey.Monkeynote.Notes.Api.Application.Queries;
 
 namespace RocketMonkey.Monkeynote.Notes.Api.Infrastructure.AutofacModules
 {
     public class ApplicationModule : Module
     {
-        private readonly string _connectionString;
+        private readonly string _queriesConnectionString;
 
-        public ApplicationModule(string connectionString)
+        public ApplicationModule(string queriesConnectionString)
         {
-            _connectionString = connectionString;
+            _queriesConnectionString = queriesConnectionString;
         }
 
         protected override void Load(ContainerBuilder builder)
         {
-            base.Load(builder);
+            builder.Register(c => new NotesQueries(_queriesConnectionString))
+                .As<INotesQueries>()
+                .InstancePerLifetimeScope();
         }
     }
 }

@@ -26,18 +26,33 @@ namespace RocketMonkey.Monkeynote.Notes.Api.Infrastructure
             new Tag("dotnet")
         };
 
-        private static readonly List<Note> Notes = new List<Note>()
+        private static readonly List<Note> NoteList1 = new List<Note>()
         {
             new Note("Test-Note-1", "Dit is de test tekst voor een note"),
             new Note("Test-Note-2", "Dit is de test tekst voor een note"),
             new Note("Test-Note-3", "Dit is de test tekst voor een note")
         };
 
+        private static readonly List<Note> NoteList2 = new List<Note>()
+        {
+            new Note("Test-Note-4", "Dit is de test tekst voor een note"),
+            new Note("Test-Note-5", "Dit is de test tekst voor een note"),
+            new Note("Test-Note-6", "Dit is de test tekst voor een note")
+        };
+
+        private static readonly List<Note> NoteList3 = new List<Note>()
+        {
+            new Note("Test-Note-7", "Dit is de test tekst voor een note"),
+            new Note("Test-Note-8", "Dit is de test tekst voor een note"),
+            new Note("Test-Note-9", "Dit is de test tekst voor een note")
+        };
+
+
         private static readonly List<Notebook> Notebooks = new List<Notebook>()
         {
-            new Notebook(new Guid("2919a0b0-8a3c-4b8e-842d-35cc504e3aad"), "Test-Notebook-1", Notes),
-            new Notebook(new Guid("51645599-19c5-43b2-b12a-f2ece787f0c7"), "Test-Notebook-2", Notes),
-            new Notebook(new Guid("918bb825-b9c8-4a2c-8f28-ca45a6b202e8"), "Test-Notebook-3", Notes)
+            new Notebook(new Guid("2919a0b0-8a3c-4b8e-842d-35cc504e3aad"), "Test-Notebook-1", NoteList1),
+            new Notebook(new Guid("2919a0b0-8a3c-4b8e-842d-35cc504e3aad"), "Test-Notebook-2", NoteList2),
+            new Notebook(new Guid("2919a0b0-8a3c-4b8e-842d-35cc504e3aad"), "Test-Notebook-3", NoteList3)
         };
 
         public static async Task SeedAsync(NotesContext context, ILogger<NotesContextSeed> logger)
@@ -71,7 +86,12 @@ namespace RocketMonkey.Monkeynote.Notes.Api.Infrastructure
 
                         if (!context.Notebooks.Any())
                         {
-                            Tags.ForEach(tag => Notes.ForEach(note => note.AddTag(tag)));
+                            Tags.ForEach(tag =>
+                            {
+                                NoteList1.ForEach(note => note.AddTag(tag));
+                                NoteList2.ForEach(note => note.AddTag(tag));
+                                NoteList3.ForEach(note => note.AddTag(tag));
+                            });
                             context.Notebooks.AddRange(Notebooks);
                             await context.SaveChangesAsync();
                         }

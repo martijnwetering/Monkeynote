@@ -10,11 +10,11 @@
         }
       ],
       "UpstreamPathTemplate": "/api/{version}/notes/{everything}",
-      "UpstreamHttpMethod": []
-      //"AuthenticationOptions": {
-      //  "AuthenticationProviderKey": "IdentityApiKey",
-      //  "AllowedScopes": []
-      //}
+      "UpstreamHttpMethod": [],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
     }
   ],
   "GlobalConfiguration": {

@@ -55,7 +55,7 @@ namespace RocketMonkey.Moneynote.Identity.Api
             }));
 
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
-            var identityBuilder = services.AddIdentityServer()
+            var identityBuilder = services.AddIdentityServer(x => x.IssuerUri = "null")
                 .AddConfigurationStore(options =>
                 {
                     options.ConfigureDbContext = builder =>

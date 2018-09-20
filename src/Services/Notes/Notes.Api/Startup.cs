@@ -5,13 +5,14 @@ using Autofac.Extensions.DependencyInjection;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using Microsoft.Extensions.Logging.Debug;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using RocketMonkey.Monkeynote.Notes.Api.Infrastructure;
 using RocketMonkey.Monkeynote.Notes.Api.Infrastructure.AutofacModules;
 using RocketMonkey.Monkeynote.Notes.Infrastructure;
@@ -33,11 +34,16 @@ namespace RocketMonkey.Monkeynote.Notes.Api
                 .AddCustomMvc()
                 .AddCustomDbContext(Configuration);
 
+            var identityUrl = Configuration.GetValue<string>("IdentityUrl");
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
                 .AddIdentityServerAuthentication(options =>
                 {
-                    options.Authority = "https://localhost:5310";
+                    options.Authority = identityUrl;
                     options.ApiName = "monkeynote.notes.api";
+                    options.SupportedTokens = SupportedTokens.Jwt;
+
+                    // Todo: https must be anbled for production
+                    options.RequireHttpsMetadata = false;
                 });
 
             var container = new ContainerBuilder();
@@ -65,21 +71,25 @@ namespace RocketMonkey.Monkeynote.Notes.Api
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
             app.UseCors("CorsPolicy");
-
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
         }
     }
 
     internal static class ExtensionMethods
     {
+        private static readonly LoggerFactory MyLoggerFactory
+            = new LoggerFactory(new ILoggerProvider[] { new DebugLoggerProvider((_, __) => true), new ConsoleLoggerProvider((_, __) => true, true) });
+
         public static IServiceCollection AddCustomMvc(this IServiceCollection services)
         {
             services
                 .AddMvc()
-                .AddControllersAsServices();
+                .AddControllersAsServices()
+                .AddJsonOptions(options =>
+                {
+                    options.SerializerSettings.DateParseHandling = DateParseHandling.DateTimeOffset;
+                    options.SerializerSettings.ContractResolver =
+                        new CamelCasePropertyNamesContractResolver();
+                }); ;
 
             services.AddCors(options =>
             {
@@ -92,9 +102,6 @@ namespace RocketMonkey.Monkeynote.Notes.Api
 
             return services;
         }
-
-        private static readonly LoggerFactory MyLoggerFactory
-            = new LoggerFactory(new ILoggerProvider[] { new DebugLoggerProvider((_, __) => true), new ConsoleLoggerProvider((_, __) => true, true) });
 
         public static IServiceCollection AddCustomDbContext(this IServiceCollection services, IConfiguration configuration)
         {

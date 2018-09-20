@@ -3,7 +3,9 @@ import { UserManager, User } from 'oidc-client';
 import { environment } from '../../environments/environment';
 import { ReplaySubject } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class OpenIdConnectService {
 
   private userManager: UserManager = new UserManager(environment.openIdConnectSettings);

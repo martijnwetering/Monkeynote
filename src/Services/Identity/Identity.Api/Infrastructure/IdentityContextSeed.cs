@@ -28,7 +28,8 @@ namespace RocketMonkey.Monkeynote.Identity.Api.Infrastructure
                 {
                     alice = new ApplicationUser
                     {
-                        UserName = "alice"
+                        UserName = "alice",
+                        Id = "2919a0b0-8a3c-4b8e-842d-35cc504e3aad"
                     };
                     var result = userMgr.CreateAsync(alice, "Passw0rd!").Result;
                     if (!result.Succeeded)

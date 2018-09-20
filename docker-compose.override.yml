@@ -12,6 +12,7 @@ services:
       - "5210:80"
     depends_on:
       - sql.data
+      - identity.api
     networks:
       - backend
 
@@ -23,6 +24,10 @@ services:
       - IdentityUrl=http://identity.api
     volumes:
       - ./src/ApiGateways/Web.Bff:${MONKEYNOTE_OCELOT_VOLUME_SPEC:-/app/configuration}
+    networks:
+      - backend
+    depends_on:
+      - identity.api
     ports:
       - "5200:80"
 
