@@ -9,13 +9,13 @@ export class RequireAuthenticatedUserRouteGuardService implements CanActivate {
     private router: Router) { }
 
   canActivate() {
-    if (this.openIdConnectService.userAvailable) {
-      return true;
-    }
-    else {
-      // trigger signin
-      this.openIdConnectService.triggerSignIn();
-      return false;
-    }
+    let isLoggedIn = this.openIdConnectService.isLoggedInObs()
+    isLoggedIn.subscribe((loggedIn) => {
+      if (!loggedIn) {
+        this.openIdConnectService.triggerSignIn();
+      }
+    });
+
+    return isLoggedIn;
   }
 }

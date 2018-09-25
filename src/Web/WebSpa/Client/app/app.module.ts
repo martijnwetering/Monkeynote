@@ -11,20 +11,21 @@ import { WriteOutJsonInterceptor } from './shared/write-out-json-interceptor';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { EnsureAcceptHeaderInterceptor } from './shared/ensure-accept-header-interceptor';
 import { AddAuthorizationHeaderInterceptor } from './shared/add-authorization-header-interceptor';
-import { NotebooksComponent } from './notebooks/notebooks.component';
-import { NotebooksService } from './notebooks/shared/notebooks.service';
+import { NotebooksModule } from './notebooks/notebooks.module';
+import { UiModule } from './ui/ui.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     SigninOidcComponent,
-    RedirectSilentRenewComponent,
-    NotebooksComponent
+    RedirectSilentRenewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NotebooksModule,
+    UiModule
   ],
   providers: [
     {
@@ -44,8 +45,7 @@ import { NotebooksService } from './notebooks/shared/notebooks.service';
       deps: [ OpenIdConnectService ]
     },
     RequireAuthenticatedUserRouteGuardService,
-    OpenIdConnectService,
-    NotebooksService
+    OpenIdConnectService
   ],
   bootstrap: [AppComponent]
 })

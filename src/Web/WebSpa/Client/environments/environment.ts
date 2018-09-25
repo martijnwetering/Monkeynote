@@ -13,6 +13,6 @@ export const environment = {
     response_type: 'id_token token',
     post_logout_redirect_uri: 'http://localhost:4200/',
     automaticSilentRenew: true,
-    silent_redirect_uri: 'http://localhost:4200/redirect-silentrenew'
+    silent_redirect_uri: 'http://localhost:4200/silent-renew.html'
   }
 };

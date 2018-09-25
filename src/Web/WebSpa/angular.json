@@ -22,13 +22,15 @@
             "main": "Client/main.ts",
             "polyfills": "Client/polyfills.ts",
             "tsConfig": "Client/tsconfig.app.json",
+            "sourceMap": true,
             "assets": [
               "Client/favicon.ico",
-              "Client/assets"
+              "Client/assets",
+              { "glob": "oidc-client.min.js", "input": "./Client/assets", "output": "./" },
+              { "glob": "silent-renew.html", "input": "./Client/assets", "output": "./" }
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "Client/styles.scss"
+              "node_modules/bootstrap/scss/bootstrap.scss"
             ],
             "scripts": []
           },

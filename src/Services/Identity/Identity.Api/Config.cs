@@ -52,14 +52,14 @@ namespace RocketMonkey.Moneynote.Identity.Api
                     AllowAccessTokensViaBrowser = true,
                     //IdentityTokenLifetime = ...
                     //AuthorizationCodeLifetime = ...
-                    AccessTokenLifetime = 120,
+                    AccessTokenLifetime = 60,
                     AllowOfflineAccess = true,
                     //AbsoluteRefreshTokenLifetime = ...
                     UpdateAccessTokenClaimsOnRefresh = true,
                     RedirectUris = new List<string>()
                     {
                         "http://localhost:4200/signin-oidc",
-                        "http://localhost:4200/redirect-silentrenew"                    },
+                        "http://localhost:4200/silent-renew.html"                    },
                     PostLogoutRedirectUris = new List<string>()
                     {
                         "http://localhost:4200"
