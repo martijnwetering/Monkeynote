@@ -9,11 +9,22 @@ import { Notebook } from './notebook.model';
 })
 export class NotebooksService {
   private _apiUrl: string = environment.apiUrl;
-  
-  constructor(private _httpClient: HttpClient) { }
+
+  constructor(private httpClient: HttpClient) { }
 
   getNotebooks(): Observable<Notebook[]> {
-    return this._httpClient.get<Notebook[]>(`${this._apiUrl}/notes/notebooks`, 
-      { headers: { 'Accept': 'application/json' } });
+    return this.httpClient.get<Notebook[]>(`${this._apiUrl}/notes/notebooks`, this.getHeaders());
+  }
+
+  getNotebook(notebookId: number): Observable<Notebook> {
+    return this.httpClient.get<Notebook>(`${this._apiUrl}/notes/notebooks/${notebookId}`, this.getHeaders());
+  }
+
+  getDefaultNotebook() {
+    return this.httpClient.get<Notebook>(`${this._apiUrl}/notes/notebooks?isDefaultNotebook=true`, this.getHeaders());
+  }
+
+  private getHeaders() {
+    return { headers: { 'Accept': 'application/json' } };
   }
 }

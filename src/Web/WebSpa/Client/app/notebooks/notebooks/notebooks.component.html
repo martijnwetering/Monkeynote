@@ -1,0 +1,3 @@
+<ul>
+  <li *ngFor='let notebook of notebooks'><a [routerLink]="['/notes/list', this.notebook.notebookId]">{{ notebook.title }}</a></li>
+</ul>

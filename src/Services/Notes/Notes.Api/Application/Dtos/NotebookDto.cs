@@ -7,7 +7,7 @@ namespace RocketMonkey.Monkeynote.Notes.Api.Application.Dtos
     {
         public int NotebookId { get; set; }
         public string Title { get; set; }
-        public ICollection<NoteDto> Notes { get; set; }
+        public bool IsDefaultNotebook { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -25,6 +25,6 @@ namespace RocketMonkey.Monkeynote.Notes.Api.Application.Dtos
             return this.NotebookId == item.NotebookId;
         }
 
-        public override int GetHashCode() => HashCode.Combine(NotebookId, Title);
+        public override int GetHashCode() => HashCode.Combine(NotebookId, Title, IsDefaultNotebook);
     }
 }

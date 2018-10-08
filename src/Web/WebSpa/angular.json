@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "wwwwroot",
+            "outputPath": "wwwroot",
             "index": "Client/index.html",
             "main": "Client/main.ts",
             "polyfills": "Client/polyfills.ts",
@@ -30,7 +30,7 @@
               { "glob": "silent-renew.html", "input": "./Client/assets", "output": "./" }
             ],
             "styles": [
-              "node_modules/bootstrap/scss/bootstrap.scss"
+              "Client/styles.scss"
             ],
             "scripts": []
           },
@@ -42,7 +42,7 @@
                   "with": "Client/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
+              "optimization": false,
               "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,

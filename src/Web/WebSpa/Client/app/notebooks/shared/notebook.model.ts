@@ -1,8 +1,9 @@
-import { Note } from "./note.model";
+import { Note } from './note.model';
 
 export class Notebook {
-    id: number;
+    notebookId: number;
     title: string;
     notes: Note[];
+    isDefaultNotebook: boolean;
     selected: boolean;
 }

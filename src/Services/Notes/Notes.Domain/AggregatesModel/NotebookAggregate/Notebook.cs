@@ -8,9 +8,10 @@ namespace RocketMonkey.Monkeynote.Notes.Domain.AggregatesModel.NotebookAggregate
     {
         private Guid _userId;
         public string Title { get; private set; }
+        public bool IsDefaultNotebook { get; private set; }
 
         public IReadOnlyCollection<Note> Notes => _notes;
-        private List<Note> _notes = new List<Note>();
+        private readonly List<Note> _notes = new List<Note>();
 
         private Notebook()
         {
@@ -22,13 +23,15 @@ namespace RocketMonkey.Monkeynote.Notes.Domain.AggregatesModel.NotebookAggregate
             
         }
 
-        public Notebook(Guid userId, string name, List<Note> notes)
+        public Notebook(Guid userId, string name, List<Note> notes, bool isDefaultNotebook = false)
         {
             Title = name ?? throw new ArgumentNullException(nameof(name));
             _notes = notes ?? throw new ArgumentNullException(nameof(notes));
 
             if (userId == Guid.Empty) throw new ArgumentNullException(nameof(userId));
             _userId = userId;
+
+            IsDefaultNotebook = isDefaultNotebook;
         }
     }
 }

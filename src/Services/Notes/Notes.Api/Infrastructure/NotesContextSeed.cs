@@ -50,7 +50,7 @@ namespace RocketMonkey.Monkeynote.Notes.Api.Infrastructure
 
         private static readonly List<Notebook> Notebooks = new List<Notebook>()
         {
-            new Notebook(new Guid("2919a0b0-8a3c-4b8e-842d-35cc504e3aad"), "Test-Notebook-1", NoteList1),
+            new Notebook(new Guid("2919a0b0-8a3c-4b8e-842d-35cc504e3aad"), "Test-Notebook-1", NoteList1, true),
             new Notebook(new Guid("2919a0b0-8a3c-4b8e-842d-35cc504e3aad"), "Test-Notebook-2", NoteList2),
             new Notebook(new Guid("2919a0b0-8a3c-4b8e-842d-35cc504e3aad"), "Test-Notebook-3", NoteList3)
         };

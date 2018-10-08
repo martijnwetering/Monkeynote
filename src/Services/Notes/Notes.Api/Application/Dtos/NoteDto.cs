@@ -27,6 +27,6 @@ namespace RocketMonkey.Monkeynote.Notes.Api.Application.Dtos
             return this.NoteId == item.NoteId;
         }
 
-        public override int GetHashCode() => HashCode.Combine(NoteId, Title);
+        public override int GetHashCode() => HashCode.Combine(NoteId, Title, Text);
     }
 }

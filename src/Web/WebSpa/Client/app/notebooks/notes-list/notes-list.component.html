@@ -1,0 +1,11 @@
+<div fxFlex='30%' class='note-list'>
+  <h2 class='notebook-title mat-title' *ngIf='notebook'>{{ notebook.title }}</h2>
+  <div class='note-list-item' *ngFor='let note of notebook?.notes' (click)='selectNote(note)'>
+    <span class='title mat-subheading-1'>{{ note.title }}</span>
+  </div>
+</div>
+
+<div fxFlex='70%' *ngIf='selectedNote'>
+  <quill-editor [style]="{height: '40px', overflow: hidden}" [(ngModel)]="selectedNote.title" [modules]="{toolbar: false}"></quill-editor>
+  <quill-editor [style]="{height: '200px'}" [(ngModel)]='selectedNote.text'></quill-editor>
+</div>

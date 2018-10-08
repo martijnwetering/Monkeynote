@@ -14,7 +14,7 @@ export class OpenIdConnectService {
 
   private userManager: UserManager = new UserManager(environment.openIdConnectSettings);
   private currentUser: User;
-  private loggedIn: boolean = false;
+  private loggedIn = false;
 
 
   userLoaded$ = new ReplaySubject<boolean>(1);
@@ -94,7 +94,7 @@ export class OpenIdConnectService {
 
   handleSilentCallback() {
     this.userManager.signinSilentCallback().then(user => {
-      this.currentUser = user
+      this.currentUser = user;
       if (!environment.production) {
         console.log('Callback after silent signin handled.', user);
       }
@@ -107,5 +107,5 @@ export class OpenIdConnectService {
         console.log('Redirection to sign out triggered.', resp);
       }
     });
-  };
+  }
 }

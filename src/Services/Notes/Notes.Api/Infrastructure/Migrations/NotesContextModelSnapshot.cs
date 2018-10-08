@@ -51,6 +51,8 @@ namespace RocketMonkey.Monkeynote.Notes.Api.Infrastructure.Migrations
                         .HasAnnotation("SqlServer:HiLoSequenceName", "notebookseq")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
 
+                    b.Property<bool>("IsDefaultNotebook");
+
                     b.Property<string>("Title")
                         .IsRequired();
 
