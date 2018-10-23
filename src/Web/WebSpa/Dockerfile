@@ -8,19 +8,20 @@ WORKDIR /src
 
 FROM ${NODE_IMAGE} as node-build
 WORKDIR /web
-COPY src/Web/WebSPA .
-RUN npm install
-RUN npm run build:prod
+COPY src/Web/WebSpa .
+RUN yarn install
+RUN yarn run build:dev
 
 FROM dotnet-build as publish
-WORKDIR /src/src/Web/WebSPA/wwwroot
-COPY --from=node-build /web/wwwroot .
+WORKDIR /src/wwwroot
+COPY --from=node-build web/wwwroot .
 WORKDIR /src
-COPY . .
-WORKDIR /src/src/Web/WebSPA
+COPY /src/Web/WebSpa/WebSpa.csproj .
+RUN dotnet restore /src/WebSpa.csproj
+COPY /src/Web/WebSpa .
 RUN dotnet publish -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "WebSPA.dll"]
+ENTRYPOINT ["dotnet", "WebSpa.dll"]

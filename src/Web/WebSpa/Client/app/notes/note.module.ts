@@ -6,14 +6,18 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
 
-import { NotesRoutingModule } from './notes-routing.module';
-import { NotesComponent } from './notes.component';
-import { NotebooksService } from './shared/notebooks.service';
+import { NotesRoutingModule } from './note-routing.module';
+import { NotesComponent } from './note.component';
+import { NoteService } from './shared/note.service';
 import { NotesListComponent } from './notes-list/notes-list.component';
 import { NotesSideNavComponent } from './notes-side-nav/notes-side-nav.component';
 import { NotebooksComponent } from './notebooks/notebooks.component';
 import { QuillModule } from 'ngx-quill';
 import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './state/note.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { NoteEffectsService } from './state/note.effects';
 
 @NgModule({
   imports: [
@@ -24,7 +28,9 @@ import { FormsModule } from '@angular/forms';
     FlexLayoutModule,
     MatCardModule,
     MatIconModule,
-    QuillModule
+    QuillModule,
+    StoreModule.forFeature('notes', reducer),
+    EffectsModule.forFeature([NoteEffectsService])
   ],
   declarations: [
     NotesComponent,
@@ -33,7 +39,7 @@ import { FormsModule } from '@angular/forms';
     NotebooksComponent
   ],
   providers: [
-    NotebooksService
+    NoteService
   ]
 })
 export class NotesModule { }

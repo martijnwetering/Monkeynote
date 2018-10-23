@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Notebook } from '../shared/notebook.model';
-import { ActivatedRoute } from '@angular/router';
+import { Store, select } from '@ngrx/store';
+import * as fromNote from '../state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-notebooks',
@@ -9,11 +11,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class NotebooksComponent implements OnInit {
 
-  notebooks: Notebook[];
+  notebookList$: Observable<Notebook[]>;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private store: Store<fromNote.State>) { }
 
   ngOnInit() {
-    this.route.data.subscribe(data => this.notebooks = data['notebooks']);
+    this.notebookList$ = this.store.pipe(
+      select(fromNote.getNotebookList)
+    );
   }
 }

@@ -37,7 +37,7 @@ services:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Passw0rd!
     ports:
-      - "27017:1433"
+      - "27018:1433"
     networks:
       - backend
 
@@ -60,7 +60,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
     ports:
-      - "4300:80"
+      - "4400:80"
 
 networks:
   backend:

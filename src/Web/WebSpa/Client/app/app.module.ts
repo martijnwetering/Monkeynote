@@ -11,8 +11,19 @@ import { WriteOutJsonInterceptor } from './shared/write-out-json-interceptor';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { EnsureAcceptHeaderInterceptor } from './shared/ensure-accept-header-interceptor';
 import { AddAuthorizationHeaderInterceptor } from './shared/add-authorization-header-interceptor';
-import { NotesModule } from './notebooks/notes.module';
+import { NotesModule } from './notes/note.module';
 import { UiModule } from './ui/ui.module';
+import { environment } from 'Client/environments/environment';
+import { HttpClientInMemoryWebApiModule, InMemoryBackendConfigArgs } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './data/in-memory-data.service';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+const inMemoryDbArgs: InMemoryBackendConfigArgs = {
+  delay: 100,
+  apiBase: 'api/v1/notes'
+};
 
 @NgModule({
   declarations: [
@@ -25,7 +36,16 @@ import { UiModule } from './ui/ui.module';
     AppRoutingModule,
     HttpClientModule,
     NotesModule,
-    UiModule
+    UiModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      name: 'Monkeynote App DevTools',
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
+    !environment.production ?
+      HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, inMemoryDbArgs) : []
   ],
   providers: [
     {
