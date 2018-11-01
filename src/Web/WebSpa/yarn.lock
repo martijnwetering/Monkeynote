@@ -358,6 +358,13 @@
     semver "5.5.1"
     semver-intersect "1.4.0"
 
+"@types/immutable@^3.8.7":
+  version "3.8.7"
+  resolved "https://registry.yarnpkg.com/@types/immutable/-/immutable-3.8.7.tgz#536d33d30f3f3d9a6d4642a219419fd82af633fb"
+  integrity sha1-U20z0w8/PZptRkKiGUGf2Cr2M/s=
+  dependencies:
+    immutable "*"
+
 "@types/jasmine@*", "@types/jasmine@~2.8.9":
   version "2.8.9"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.8.9.tgz#e028c891e8551fdf6de905d959581fc4fa0b5509"
@@ -385,12 +392,21 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-0.0.32.tgz#bd284e57c84f1325da702babfc82a5328190c0c5"
   integrity sha1-vShOV8hPEyXacCur/IKlMoGQwMU=
 
+"@types/quill-delta@https://github.com/maximkornilov/types-quill-delta/tarball/master":
+  version "3.5.0"
+  resolved "https://github.com/maximkornilov/types-quill-delta/tarball/master#98f60ac2df9856498de3d79cf13fd9b1b979c3a3"
+
 "@types/quill@1.3.6":
   version "1.3.6"
   resolved "https://registry.yarnpkg.com/@types/quill/-/quill-1.3.6.tgz#147ea3b069aad63e49beb235b778a46ff131619e"
   integrity sha512-cORm6a2Z18M3DRMR1oE29hMFycyUkA0I0K0Bbmo0gUs9/7HzNShLTV/e9btn6asoanYxQR3Mys+QSXPO/I57CQ==
   dependencies:
     parchment "^1.1.2"
+
+"@types/ramda@^0.25.40":
+  version "0.25.40"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.25.40.tgz#ab4970054d255ed1762fce5ebdfc3168af53d1f5"
+  integrity sha512-2wJUkK/jY//CECZZrFb1LBreCkwuA9RY4P1GpGV35vLg/cJQUFs0dSUEvQANPjnoa4Kv8hsVFvM0v8xS5cPydg==
 
 "@types/selenium-webdriver@^3.0.0":
   version "3.0.12"
@@ -3305,6 +3321,11 @@ immediate@~3.0.5:
   resolved "https://registry.yarnpkg.com/immediate/-/immediate-3.0.6.tgz#9db1dbd0faf8de6fbe0f5dd5e56bb606280de69b"
   integrity sha1-nbHb0Pr43m++D13V5Wu2BigN5ps=
 
+immutable@*, immutable@^3.8.2:
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
+  integrity sha1-wkOZUUVbs5kT2vKBN28VMOEErfM=
+
 import-cwd@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/import-cwd/-/import-cwd-2.1.0.tgz#aa6cf36e722761285cb371ec6519f53e2435b0a9"
@@ -5569,6 +5590,18 @@ quill@1.3.6:
     extend "^3.0.1"
     parchment "^1.1.4"
     quill-delta "^3.6.2"
+
+ramda-fantasy@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/ramda-fantasy/-/ramda-fantasy-0.8.0.tgz#9e8c37d93ec0a70796cfc10873dd9c50850390f6"
+  integrity sha1-now32T7ApweWz8EIc92cUIUDkPY=
+  dependencies:
+    ramda ">=0.15.0"
+
+ramda@>=0.15.0, ramda@^0.25.0:
+  version "0.25.0"
+  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.25.0.tgz#8fdf68231cffa90bc2f9460390a0cb74a29b29a9"
+  integrity sha512-GXpfrYVPwx3K7RQ6aYT8KPS8XViSXUVJT1ONhoKPE9VAleW42YE+U+8VEyGWt41EnEQW7gwecYJriTI0pKoecQ==
 
 randomatic@^3.0.0:
   version "3.1.0"

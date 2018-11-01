@@ -22,7 +22,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 const inMemoryDbArgs: InMemoryBackendConfigArgs = {
   delay: 100,
-  apiBase: 'api/v1/notes'
+  apiBase: 'api/v1/notes',
+  post204: false,
+  put204: false
 };
 
 @NgModule({

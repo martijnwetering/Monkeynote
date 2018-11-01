@@ -5,5 +5,4 @@ export class Notebook {
     title: string;
     notes: Note[] = [];
     defaultNotebook: boolean;
-    selected = false;
 }

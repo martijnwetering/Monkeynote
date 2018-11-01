@@ -27,7 +27,8 @@
               "Client/favicon.ico",
               "Client/assets",
               { "glob": "oidc-client.min.js", "input": "./Client/assets", "output": "./" },
-              { "glob": "silent-renew.html", "input": "./Client/assets", "output": "./" }
+              { "glob": "silent-renew.html", "input": "./Client/assets", "output": "./" },
+              { "glob": "delta.js", "input": "/node_modules/quill-delta/lib", "output": "./" }
             ],
             "styles": [
               "Client/styles.scss"

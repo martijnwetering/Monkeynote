@@ -4,6 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 import { NotesRoutingModule } from './note-routing.module';
@@ -13,7 +15,7 @@ import { NotesListComponent } from './notes-list/notes-list.component';
 import { NotesSideNavComponent } from './notes-side-nav/notes-side-nav.component';
 import { NotebooksComponent } from './notebooks/notebooks.component';
 import { QuillModule } from 'ngx-quill';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './state/note.reducer';
 import { EffectsModule } from '@ngrx/effects';
@@ -22,12 +24,15 @@ import { NoteEffectsService } from './state/note.effects';
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     FormsModule,
     NotesRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     MatCardModule,
     MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
     QuillModule,
     StoreModule.forFeature('notes', reducer),
     EffectsModule.forFeature([NoteEffectsService])
