@@ -27,4 +27,9 @@ export class NotebooksComponent implements OnInit {
     this.store.dispatch(new noteActions.SelectNotebook(id));
     this.router.navigate(['notes']);
   }
+
+  addNotebook() {
+    const newNotebook: Notebook = { title: 'No Title', defaultNotebook: false };
+    this.store.dispatch(new noteActions.AddNotebook(newNotebook));
+  }
 }

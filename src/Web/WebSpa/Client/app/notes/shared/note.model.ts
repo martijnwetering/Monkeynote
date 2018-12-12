@@ -4,5 +4,6 @@ export class Note {
   id: number;
   title: string;
   text: Delta;
+  created: Date;
   tags?: Array<string>;
 }

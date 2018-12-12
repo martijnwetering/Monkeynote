@@ -15,7 +15,10 @@ export enum NoteActionTypes {
   NewNote = '[Note] New Note',
   NewNoteSuccess = '[Note] New Note Success',
   NewNoteFail = '[Note] New Note Fail',
-  SelectNotebook = '[Notebook] Select Notebook'
+  SelectNotebook = '[Notebook] Select Notebook',
+  AddNotebook = '[Notebook] Add Notebook',
+  AddNotebookSuccess = '[Notebook] Added Notebook Success',
+  AddNotebookFailure = '[Notebook] Added Notebook Fail'
 }
 
 export class Load implements Action {
@@ -84,10 +87,30 @@ export class SelectNotebook implements Action {
   constructor(public payload: number) { }
 }
 
+export class AddNotebook implements Action {
+  type = NoteActionTypes.AddNotebookSuccess;
+
+  constructor(public payload: Notebook) { }
+}
+
+export class AddNotebookSuccess implements Action {
+  type = NoteActionTypes.AddNotebookSuccess;
+
+  constructor(public payload: Notebook) { }
+}
+
+export class AddNotebookFailure implements Action {
+  type = NoteActionTypes.AddNotebookFailure;
+
+  constructor(public payload: string) { }
+}
+
 export type NoteActions = LoadSuccess
   | LoadFail
   | Load
   | SelectNote
   | UpdateNote
   | NewNote
-  | SelectNotebook;
+  | SelectNotebook
+  | AddNotebookSuccess
+  | AddNotebookFailure;

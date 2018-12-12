@@ -30,9 +30,13 @@ export class NoteService {
     return this.httpClient.post<Note>(`${this._apiUrl}/notes/notebooks/${notebookId}/notes`, note, this.getHeaders());
   }
 
-  updateNote(note: Note, notebookId: number): any {
+  updateNote(note: Note, notebookId: number): Observable<Note> {
     return this.httpClient.put<Note>(`${this._apiUrl}/notes/notebooks/${notebookId}/notes/${note.id}`,
-      note, this.getHeaders()).pipe(tap(console.log));
+      note, this.getHeaders());
+  }
+
+  addNotebook(notebook: Notebook): Observable<Notebook> {
+    return this.httpClient.post<Notebook>(`${this._apiUrl}/notes/notebooks`, notebook, this.getHeaders());
   }
 
   private getHeaders() {

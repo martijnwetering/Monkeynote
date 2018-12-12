@@ -1,10 +1,11 @@
 import { Notebook } from '../shared/notebook.model';
 import { NoteActions, NoteActionTypes } from './note.actions';
+import { sortNotes } from '../shared/utility';
 
 export enum SortKey {
   Id,
   Title,
-  DateDescending
+  Date
 }
 
 export enum SortOrder {
@@ -26,8 +27,8 @@ const initialState: NoteState = {
   selectedNotebookId: 0,
   selectedNoteId: 0,
   error: '',
-  SortKey: SortKey.Id,
-  SortOrder: SortOrder.Ascending
+  SortKey: SortKey.Date,
+  SortOrder: SortOrder.Descending
 };
 
 export function reducer(state: NoteState = initialState, action: NoteActions): NoteState {
@@ -77,11 +78,12 @@ export function reducer(state: NoteState = initialState, action: NoteActions): N
 
     case NoteActionTypes.SelectNotebook:
       const notebookId = action.payload;
-      const selectedNotebook = state.notebooks.find(nb => nb.id === notebookId);
+      const selectedNotebook = state.notebooks.slice().find(nb => nb.id === notebookId);
+      const sortedNotes = sortNotes(selectedNotebook.notes, state.SortKey, state.SortOrder);
       return {
         ...state,
         selectedNotebookId: notebookId,
-        selectedNoteId: selectedNotebook.notes[0].id
+        selectedNoteId: sortedNotes[0].id
       };
 
     case NoteActionTypes.NewNoteSuccess:
@@ -92,6 +94,16 @@ export function reducer(state: NoteState = initialState, action: NoteActions): N
         ...state,
         notebooks: notebooks,
         selectedNoteId: action.payload.note.id
+      };
+
+    case NoteActionTypes.AddNotebookSuccess:
+      const notebookToAdd: Notebook = {...action.payload};
+      const allNotebooks = [...state.notebooks];
+      allNotebooks.push(notebookToAdd);
+
+      return {
+        ...state,
+        notebooks: allNotebooks
       };
 
     default:

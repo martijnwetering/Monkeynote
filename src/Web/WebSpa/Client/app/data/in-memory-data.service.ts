@@ -11,6 +11,7 @@ import {
 } from 'angular-in-memory-web-api';
 import { Notebook } from '../notes/shared/notebook.model';
 import { default as Delta } from 'quill-delta';
+import { addMinutes, addDays, addHours, addMilliseconds } from 'date-fns';
 
 @Injectable()
 export class InMemoryDataService implements InMemoryDbService {
@@ -207,17 +208,22 @@ export class InMemoryDataService implements InMemoryDbService {
           {
             id: 1,
             title: 'Ultron',
-            text: this.textAsDelta('Very dangerous robot with laserbeam hands. Do not get close.')
+            text: this.textAsDelta('Very dangerous robot with laserbeam hands. Do not get close.'),
+            created: addMilliseconds(new Date(), -5)
           },
           {
             id: 2,
             title: 'Hella',
-            text: this.textAsDelta('Olmost impossible to defeat. Draws here power from Asgard.')
+            text: this.textAsDelta('Olmost impossible to defeat. Draws here power from Asgard.'),
+            created: addDays(new Date(), -10)
+
           },
           {
             id: 3,
             title: 'Thanos',
-            text: this.textAsDelta('Need all possible heroes to fight this guy. Purple looking!')
+            text: this.textAsDelta('Need all possible heroes to fight this guy. Purple looking!'),
+            created: addDays(new Date(), -5)
+
           }
         ]
       },
@@ -230,17 +236,23 @@ export class InMemoryDataService implements InMemoryDbService {
           {
             id: 4,
             title: 'Batman',
-            text: this.textAsDelta('Entered his goth fase after his 30th birthday.')
+            text: this.textAsDelta('Entered his goth fase after his 30th birthday.'),
+            created: addHours(new Date(), -10)
+
           },
           {
             id: 5,
             title: 'Superman',
-            text: this.textAsDelta('Indestructable')
+            text: this.textAsDelta('Indestructable'),
+            created: addMinutes(new Date(), -30)
+
           },
           {
             id: 6,
             title: 'Wonder Woman',
-            text: this.textAsDelta('Nice personality. Don\'t get her angry! Cool lasso.')
+            text: this.textAsDelta('Nice personality. Don\'t get her angry! Cool lasso.'),
+            created: addDays(new Date(), -3)
+
           }
         ]
       },
@@ -253,17 +265,23 @@ export class InMemoryDataService implements InMemoryDbService {
           {
             id: 7,
             title: 'Game of thrones',
-            text: this.textAsDelta('Backstabbing at its finest')
+            text: this.textAsDelta('Backstabbing at its finest'),
+            created: addMinutes(new Date(), -5)
+
           },
           {
             id: 8,
             title: 'Malazan book of the fallen',
-            text: this.textAsDelta('Great characters and magic system.')
+            text: this.textAsDelta('Great characters and magic system.'),
+            created: addDays(new Date(), -30)
+
           },
           {
             id: 9,
             title: 'Name of the wind',
-            text: this.textAsDelta('Simply the best fantasy book out there.')
+            text: this.textAsDelta('Simply the best fantasy book out there.'),
+            created: addDays(new Date(), -5)
+
           }
         ]
       }

@@ -22,7 +22,7 @@ export class NotesSideNavComponent implements OnInit {
   }
 
   newNote() {
-    const newNote = { id: 0, title: '', text: new Delta(), tags: [] };
+    const newNote = { id: 0, title: 'No Title', text: new Delta(), created: new Date(), tags: [] };
     this.store.dispatch(new NewNote({ note: newNote, notebookId: this.currentNotebookId }));
   }
 }

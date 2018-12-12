@@ -1,15 +1,16 @@
-import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Notebook } from '../shared/notebook.model';
 import { Note } from '../shared/note.model';
 import * as fromNotes from '../state';
 import * as noteActions from '../state/note.actions';
-import * as fromQuill from 'quill';
 import { Store, select } from '@ngrx/store';
 import { Observable, interval } from 'rxjs';
-import { tap, debounceTime, distinctUntilChanged, takeWhile } from 'rxjs/operators';
-import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
+import { tap } from 'rxjs/operators';
+import { FormControl, FormBuilder } from '@angular/forms';
 import { QuillEditorComponent } from 'ngx-quill';
 import { default as Delta } from 'quill-delta';
+import { format } from 'date-fns';
+import { Router, NavigationStart, Event } from '@angular/router';
 
 // const Quill: any = fromQuill;
 
@@ -33,7 +34,6 @@ export class NotesListComponent implements OnInit, OnDestroy {
   titleFormControl: FormControl;
   textFormControl: FormControl;
   modules = { toolbar: ['bold', 'italic', 'underline', 'strike'] };
-  private componentActive = true;
   private selectedNoteSnapshot: Note;
   private selectedNotebookId: number;
 
@@ -43,7 +43,9 @@ export class NotesListComponent implements OnInit, OnDestroy {
   }
   editor: QuillEditorComponent;
 
-  constructor(private store: Store<fromNotes.State>, private fb: FormBuilder) {
+  constructor(private store: Store<fromNotes.State>,
+    private router: Router,
+    private fb: FormBuilder) {
     this.titleFormControl = fb.control('');
     this.textFormControl = fb.control('');
   }
@@ -54,13 +56,10 @@ export class NotesListComponent implements OnInit, OnDestroy {
       tap(notebook => (notebook ? (this.selectedNotebookId = notebook.id) : 0))
     );
 
-    this.notesSorted$ = this.store.pipe(
-      select(fromNotes.getCurrentNotesSorted)
-    );
+    this.notesSorted$ = this.store.pipe(select(fromNotes.getCurrentNotesSorted));
 
     this.note$ = this.store.pipe(
       select(fromNotes.getCurrentNote),
-      tap(console.log),
       tap(note => {
         if (note) {
           this.selectedNoteSnapshot = note;
@@ -71,42 +70,65 @@ export class NotesListComponent implements OnInit, OnDestroy {
     );
 
     // Todo:
-    // - save on 30 sec interval
-    // - save on new note
-    // - save on close tab
-    // - save when navigating away
-    // - save on blur text or title pane
+    // [X] save on 30 sec interval
+    // [X] save on new note
+    // [] save on close tab
+    // [X] save when navigating away
+    // [X] save on blur text or title pane
     interval(5000)
       // .pipe(takeWhile(_ => this.componentActive))
       .subscribe(_ => {
-        let title = this.titleFormControl.value;
-        let delta = new Delta(this.textFormControl.value);
-        if (
-          delta.diff(new Delta(this.selectedNoteSnapshot.text.ops)).length() > 0 ||
-          title !== this.selectedNoteSnapshot.title
-        ) {
-          let note: Note = {
-            id: this.selectedNoteSnapshot.id,
-            title: title,
-            text: delta
-          };
-          this.store.dispatch(
-            new noteActions.UpdateNote({ notebookId: this.selectedNotebookId, note })
-          );
-        }
+        this.saveNote();
       });
+
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationStart) {
+        this.saveNote();
+      }
+    });
   }
 
+  saveNote() {
+    let title = this.titleFormControl.value;
+    let delta = new Delta(this.textFormControl.value);
+    if (this.noteChanged(title, delta)) {
+      let note: Note = {
+        id: this.selectedNoteSnapshot.id,
+        title: title,
+        text: delta,
+        tags: this.selectedNoteSnapshot.tags,
+        created: this.selectedNoteSnapshot.created
+      };
+      this.store.dispatch(
+        new noteActions.UpdateNote({ notebookId: this.selectedNotebookId, note })
+      );
+    }
+  }
+
+  private noteChanged = (title: string, delta: Delta) =>
+    delta.diff(new Delta(this.selectedNoteSnapshot.text.ops)).length() > 0 ||
+    title !== this.selectedNoteSnapshot.title
+
+  isSelected = (id: number) => this.selectedNoteSnapshot.id === id;
+
   ngOnDestroy() {
-    this.componentActive = false;
   }
 
   selectNote(id: number) {
     this.store.dispatch(new noteActions.SelectNote(id));
   }
 
-  contentChanged($event) {
-    console.log('content changed: ', $event);
+  contentChanged() {
+    console.log('content changed');
+  }
+
+  formatDate(date: Date) {
+    return format(date, '[created:] DD MMM');
+    // if (isToday(date)) {
+    //   return format(differenceInHours(date, new Date()), '[created:] HH ago');
+    // } else {
+    //   return format(date, '[created:] DD MMM');
+    // }
   }
 
   editorCreated($event) {

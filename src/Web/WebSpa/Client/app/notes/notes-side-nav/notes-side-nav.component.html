@@ -1,2 +1,9 @@
-<button (click)='newNote()'>New Note</button>
-<a [routerLink]="['/notebooks']" routerLinkActive="active" ><mat-icon>book</mat-icon> Notebooks</a>
+<div>
+  <button (click)='newNote()'>
+    <mat-icon>note_add</mat-icon>
+    Add note
+  </button>
+</div>
+<div>
+  <a [routerLink]="['/notebooks']" routerLinkActive="active" ><mat-icon>book</mat-icon> Notebooks</a>
+</div>

@@ -2,6 +2,8 @@ import * as fromNotes from './note.reducer';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { Notebook } from '../shared/notebook.model';
 import { Note } from '../shared/note.model';
+import { compareDesc, compareAsc } from 'date-fns';
+import { sortNotes } from '../shared/utility';
 
 export interface State {
   notes: fromNotes.NoteState;
@@ -46,21 +48,7 @@ export const getCurrentNotesSorted = createSelector(
     if (!currentNotebook) {
       return;
     }
-
-    const notes = [...currentNotebook.notes];
-    switch (state.SortKey) {
-      case fromNotes.SortKey.Id:
-        return notes.sort((a, b) => {
-          if (state.SortOrder === fromNotes.SortOrder.Ascending) {
-            return a.id - b.id;
-          } else {
-            return b.id - a.id;
-          }
-        });
-
-      default:
-        return notes;
-    }
+    return sortNotes(currentNotebook.notes, state.SortKey, state.SortOrder);
   }
 );
 
@@ -71,7 +59,6 @@ export const getCurrentNote = createSelector(
     if (currentNoteId <= 0) {
       return;
     }
-
     return currentNotebook.notes.find(n => n.id === currentNoteId);
   }
 );

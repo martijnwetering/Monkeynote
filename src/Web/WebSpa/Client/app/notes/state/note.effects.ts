@@ -6,6 +6,7 @@ import { mergeMap, map, catchError, tap } from 'rxjs/operators';
 import * as noteActions from './note.actions';
 import { of } from 'rxjs';
 import { Note } from '../shared/note.model';
+import { Notebook } from '../shared/notebook.model';
 
 @Injectable()
 export class NoteEffectsService {
@@ -40,7 +41,7 @@ export class NoteEffectsService {
   );
 
   @Effect()
-  newNote = this.actions$.pipe(
+  newNote$ = this.actions$.pipe(
     ofType(NoteActionTypes.NewNote),
     mergeMap((action: noteActions.NewNote) => {
       const { note, notebookId } = action.payload;
@@ -50,4 +51,18 @@ export class NoteEffectsService {
       );
     })
   );
+
+  @Effect()
+  addNotebook$ = this.actions$.pipe(
+    ofType(NoteActionTypes.AddNotebook),
+    mergeMap((action: noteActions.AddNotebook) => {
+      const notebook = { ...action.payload };
+      return this.noteService.addNotebook(notebook).pipe(
+        tap(console.log),
+        map((nb: Notebook) => new noteActions.AddNotebookSuccess(nb)),
+        catchError(error => of(new noteActions.AddNotebookFailure(error)))
+      );
+    })
+  );
+
 }

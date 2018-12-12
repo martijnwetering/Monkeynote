@@ -2,17 +2,19 @@
   <h2 class='notebook-title mat-title' *ngIf='notebook$ | async as notebook'>{{ notebook.title }}</h2>
   <div class='note-list-item'
     *ngFor='let note of notesSorted$ | async'
-    (click)='selectNote(note.id)'>
+    (click)='selectNote(note.id)'
+    [class.selected-note]='isSelected(note.id)'>
     <span class='title mat-subheading-1'>{{ note.title }}</span>
+    <span>{{ formatDate(note.created) }}</span>
   </div>
 </div>
 
 <div fxFlex='70%' *ngIf='note$ | async as note'>
   <form class="example-form">
     <mat-form-field>
-      <input matInput placeholder="Title" [formControl]='titleFormControl' name='title'>
+      <input (blur)='saveNote()' matInput placeholder="Title" [formControl]='titleFormControl' name='title'>
     </mat-form-field>
   </form>
-  <quill-editor #editor [modules]='modules' (onContentChanged)='contentChanged($event)' (onEditorCreated)='editorCreated($event)' format='object' [style]="{height: '200px'}" [formControl]='textFormControl'></quill-editor>
+  <quill-editor #editor onblur='saveNote()' [modules]='modules' (onContentChanged)='contentChanged($event)' (onEditorCreated)='editorCreated($event)' format='object' [style]="{height: '200px'}" [formControl]='textFormControl'></quill-editor>
   <pre><code>{{ note.text | json }}</code></pre>
 </div>

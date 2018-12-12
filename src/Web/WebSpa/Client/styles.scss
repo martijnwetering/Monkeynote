@@ -2,8 +2,10 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic&amp;subset=latin-ext');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import '~@angular/material/theming';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+// @import "~@angular/material/prebuilt-themes/purple-green.css";
+
 
 
 $general-typography: mat-typography-config(
@@ -19,6 +21,10 @@ $secondary-typography: mat-typography-config(
 // Be sure that you only ever include this mixin once!
 @include mat-core($general-typography);
 
-// import your own custom files, e.g.
-// @import "variables";
-// @import "global";
+// $primary: mat-palette($mat-indigo);
+// $accent:  mat-palette($mat-pink, A200, A100, A400);
+
+// $theme: mat-light-theme($primary, $accent);
+
+// // Include all theme styles for the components.
+// @include angular-material-theme($theme);

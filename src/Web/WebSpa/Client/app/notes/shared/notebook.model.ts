@@ -1,8 +1,8 @@
 import { Note } from './note.model';
 
 export class Notebook {
-    id: number;
+    id?: number;
     title: string;
-    notes: Note[] = [];
+    notes?: Note[] = [];
     defaultNotebook: boolean;
 }

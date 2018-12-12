@@ -1,3 +1,7 @@
+<button (click)='addNotebook()'>
+    <mat-icon>note_add</mat-icon>
+    Add notebook
+  </button>
 <ul>
   <li *ngFor='let notebook of notebookList$ | async'><a (click)='selectNotebook(notebook.id)'>{{ notebook.title }}</a></li>
 </ul>

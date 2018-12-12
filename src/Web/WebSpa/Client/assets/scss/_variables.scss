@@ -1,0 +1,13 @@
+@import '~@angular/material/theming';
+
+$primaryPalette: mat-palette($mat-indigo);
+$accentPalette:  mat-palette($mat-pink, A200, A100, A400);
+$warnPalette:    mat-palette($mat-red);
+
+// re-define the indigo-pink theme
+$myDefaultTheme: mat-light-theme($primaryPalette, $accentPalette, $warnPalette);
+
+// Create your Sass color vars (will be available in all the project)
+$primary: mat-color($primaryPalette);
+$accent: mat-color($accentPalette);
+$warn: mat-color($warnPalette);
